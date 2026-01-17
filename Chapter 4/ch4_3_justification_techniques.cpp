@@ -35,4 +35,74 @@ using namespace std;
 
 // =============================================================================
 // 4.3.3 MATHEMATICAL INDUCTION
-// =================
+// =============================================================================
+/*
+ * Steps:
+ * 1. Base Case: Prove statement Q(n) for n = 1.
+ * 2. Inductive Step: Assume Q(i) is true for i < n, prove Q(n) is true.
+ *
+ * Example: Sum of 1 to n = n(n+1)/2.
+ */
+
+
+int arithmeticSumRecursive(int n) {
+    if (n <= 1) return 1; // Base case
+    return n + arithmeticSumRecursive(n - 1); // Step: n + Sum(n-1)
+}
+
+// =============================================================================
+// 4.3.4 LOOP INVARIANTS
+// =============================================================================
+/*
+ * Technique: Define a statement S that remains true throughout the loop.
+ * 1. Initial: S is true before loop.
+ * 2. Maintenance: If S is true before iteration i, it's true after.
+ * 3. Termination: S at the end implies correctness.
+ */
+
+/**
+ * Example 4.5: arrayFind
+ * Invariant Si: x is not equal to any of the first i elements of A.
+ */
+int arrayFind(int x, const vector<int>& A) {
+    int n = A.size();
+    int i = 0;
+    // Before loop: S0 is true (x is not in the first 0 elements).
+    while (i < n) {
+        // If x == A[i], we found it.
+        if (x == A[i]) return i;
+        else i++; 
+        // Maintenance: Since x != A[i], Si+1 is true.
+    }
+    // Termination: i == n, so Sn is true (x is not in all n elements).
+    return -1;
+}
+
+// =============================================================================
+// SUMMARY OF TECHNIQUES
+// =============================================================================
+
+/*
+ * | Technique      | Best Used For...                                         |
+ * |----------------|----------------------------------------------------------|
+ * | Counterexample | Disproving a universal claim.                             |
+ * | Contrapositive | Proving "If-Then" logic by reversing it.                 |
+ * | Contradiction  | Proving something MUST be true because the opposite is impossible. |
+ * | Induction      | Claims involving integers n (size, depth, time).         |
+ * | Loop Invariant | Proving iterative algorithms are correct.                |
+ */
+
+int main() {
+    vector<int> data = {10, 25, 30, 45, 50};
+    int target = 45;
+
+    int index = arrayFind(target, data);
+    
+    if (index != -1) {
+        cout << "Element " << target << " found at index " << index << endl;
+    } else {
+        cout << "Element not found." << endl;
+    }
+
+    return 0;
+}
