@@ -1,5 +1,5 @@
 /**
- * CHAPTER 12.4: DYNAMIC PROGRAMMING
+ * CHAPTER 12.2: DYNAMIC PROGRAMMING
  * --- THE CONCEPT ---
  * Dynamic Programming (DP) is a powerful design pattern for optimization problems.
  * It is applicable when a problem has:
